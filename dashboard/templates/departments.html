@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+
+{% block title %}DocSign | Healthcare Departments{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-hero {
+        padding: 75px 0 65px;
+        background: linear-gradient(135deg, #fff7f5 0%, #f7f8f9 55%, #eef0f1 100%);
+        text-align: center;
+    }
+
+    .page-hero h1 {
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 15px;
+    }
+
+    .page-hero h1 span {
+        color: var(--coral);
+    }
+
+    .page-hero p {
+        max-width: 700px;
+        margin: auto;
+        color: var(--muted);
+        line-height: 1.8;
+    }
+
+    .department-page {
+        padding: 75px 0;
+    }
+
+    .department-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px 22px;
+        text-align: center;
+        height: 100%;
+        transition: 0.25s ease;
+    }
+
+    .department-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow);
+        border-color: var(--coral-light);
+    }
+
+    .department-icon {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background: var(--coral-light);
+        color: var(--coral);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+    }
+
+    .department-card h4 {
+        color: var(--text);
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .department-card p {
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+
+    .appointment-box {
+        margin-top: 65px;
+        padding: 45px 30px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, #fff7f5, #f7f8f9);
+        border: 1px solid var(--border);
+        text-align: center;
+    }
+
+    .appointment-box h2 {
+        color: var(--text);
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+
+    .appointment-box p {
+        color: var(--muted);
+        max-width: 650px;
+        margin: 0 auto 25px;
+        line-height: 1.7;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <h1>Healthcare <span>Departments</span></h1>
+        <p>
+            Explore the different medical specialties supported by
+            the DocSign healthcare platform.
+        </p>
+    </div>
+</section>
+
+
+<section class="department-page">
+    <div class="container">
+
+        <div class="row g-4">
+
+            <!-- Cardiology -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+                    <h4>Cardiology</h4>
+                    <p>Heart and cardiovascular care.</p>
+                </div>
+            </div>
+
+            <!-- Neurology -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-brain"></i>
+                    </div>
+                    <h4>Neurology</h4>
+                    <p>Brain and nervous system care.</p>
+                </div>
+            </div>
+
+            <!-- Pediatrics -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-person-hearts"></i>
+                    </div>
+                    <h4>Pediatrics</h4>
+                    <p>Healthcare for children and infants.</p>
+                </div>
+            </div>
+
+            <!-- Orthopedics -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-person-walking"></i>
+                    </div>
+                    <h4>Orthopedics</h4>
+                    <p>Bones, joints and musculoskeletal care.</p>
+                </div>
+            </div>
+
+            <!-- Dermatology -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-droplet"></i>
+                    </div>
+                    <h4>Dermatology</h4>
+                    <p>Skin, hair and nail care.</p>
+                </div>
+            </div>
+
+            <!-- Ophthalmology -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-eye"></i>
+                    </div>
+                    <h4>Ophthalmology</h4>
+                    <p>Eye health and vision care.</p>
+                </div>
+            </div>
+
+            <!-- Dentistry -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-emoji-smile"></i>
+                    </div>
+                    <h4>Dentistry</h4>
+                    <p>Dental and oral healthcare.</p>
+                </div>
+            </div>
+
+            <!-- Pulmonology -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-lungs"></i>
+                    </div>
+                    <h4>Pulmonology</h4>
+                    <p>Lung and respiratory care.</p>
+                </div>
+            </div>
+
+            <!-- Radiology -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="bi bi-radioactive"></i>
+                    </div>
+                    <h4>Radiology</h4>
+                    <p>Medical imaging and diagnostics.</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="appointment-box">
+            <h2>Need Medical Care?</h2>
+            <p>
+                Find the right department for your healthcare needs
+                and request an appointment with DocSign.
+            </p>
+
+            <a href="{% url 'appointment' %}"
+               class="btn text-white px-4 py-2 rounded-pill"
+               style="background-color: #e58b82;">
+                <i class="bi bi-calendar-check me-2"></i>
+                Book an Appointment
+            </a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} | DocSign{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="form-header">
+        <span>Patient Account</span>
+        <h1>{{ title }}</h1>
+        <p>
+            Keep your healthcare information updated and organized.
+        </p>
+    </div>
+
+    <div class="profile-form-card">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+
+            <div class="form-section">
+
+                <h3>Personal Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input
+                            type="text"
+                            value="{{ request.user.username }}"
+                            class="form-control"
+                            disabled
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            value="{{ request.user.email }}"
+                            class="form-control"
+                            disabled
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.date_of_birth.id_for_label }}">
+                            Date of Birth
+                        </label>
+                        {{ form.date_of_birth }}
+                        {{ form.date_of_birth.errors }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.gender.id_for_label }}">
+                            Gender
+                        </label>
+                        {{ form.gender }}
+                        {{ form.gender.errors }}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-section">
+
+                <h3>Contact Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+                        <label for="{{ form.address.id_for_label }}">
+                            Address
+                        </label>
+                        {{ form.address }}
+                        {{ form.address.errors }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.emergency_contact.id_for_label }}">
+                            Emergency Contact
+                        </label>
+                        {{ form.emergency_contact }}
+                        {{ form.emergency_contact.errors }}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-section">
+
+                <h3>Medical Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="{{ form.blood_group.id_for_label }}">
+                            Blood Group
+                        </label>
+                        {{ form.blood_group }}
+                        {{ form.blood_group.errors }}
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="{{ form.medical_history.id_for_label }}">
+                            Medical History
+                        </label>
+                        {{ form.medical_history }}
+                        {{ form.medical_history.errors }}
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="{{ form.allergies.id_for_label }}">
+                            Allergies
+                        </label>
+                        {{ form.allergies }}
+                        {{ form.allergies.errors }}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <a href="{% url 'patient_profile' %}"
+                   class="cancel-btn">
+                    Cancel
+                </a>
+
+                <button type="submit" class="save-btn">
+                    Save Profile
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<style>
+
+.form-header {
+    margin-bottom: 35px;
+}
+
+.form-header span {
+    color: var(--coral);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-header h1 {
+    color: var(--text);
+    font-weight: 700;
+    margin: 6px 0 8px;
+}
+
+.form-header p {
+    color: var(--muted);
+}
+
+.profile-form-card {
+    max-width: 900px;
+    margin: auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.form-section {
+    padding: 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.form-section h3 {
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-control,
+.form-group select,
+.form-group textarea,
+.form-group input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 13px;
+    color: var(--text);
+    background: white;
+}
+
+.form-control:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input:focus {
+    border-color: var(--coral);
+    box-shadow: 0 0 0 3px rgba(229, 139, 130, 0.15);
+    outline: none;
+}
+
+.form-control:disabled {
+    background: #f3f4f6;
+    cursor: not-allowed;
+}
+
+.form-group ul.errorlist {
+    color: #c0392b;
+    font-size: 13px;
+    margin: 5px 0 0;
+    padding-left: 18px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-actions {
+    padding: 25px 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.cancel-btn {
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cancel-btn:hover {
+    background: #f8fafc;
+    color: var(--text);
+}
+
+.save-btn {
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    background: var(--coral);
+    color: white;
+    font-weight: 600;
+}
+
+.save-btn:hover {
+    background: var(--coral-dark);
+}
+
+@media (max-width: 768px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+</style>
+
+{% endblock %}

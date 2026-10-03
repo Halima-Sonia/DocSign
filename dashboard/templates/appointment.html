@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+
+{% block title %}DocSign | Book an Appointment{% endblock %}
+
+{% block extra_css %}
+<style>
+    .appointment-hero {
+        padding: 75px 0 65px;
+        background: linear-gradient(135deg, #fff7f5 0%, #f7f8f9 55%, #eef0f1 100%);
+        text-align: center;
+    }
+
+    .appointment-hero h1 {
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 15px;
+    }
+
+    .appointment-hero h1 span {
+        color: var(--coral);
+    }
+
+    .appointment-hero p {
+        max-width: 700px;
+        margin: auto;
+        color: var(--muted);
+        line-height: 1.8;
+    }
+
+    .appointment-section {
+        padding: 75px 0;
+    }
+
+    .appointment-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: var(--shadow);
+        max-width: 850px;
+        margin: auto;
+    }
+
+    .appointment-card h3 {
+        color: var(--text);
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .appointment-card .intro {
+        color: var(--muted);
+        margin-bottom: 30px;
+    }
+
+    .form-label {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .form-control,
+    .form-select {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: var(--coral);
+        box-shadow: 0 0 0 0.2rem rgba(229, 139, 130, 0.15);
+    }
+
+    .appointment-btn {
+        background-color: var(--coral);
+        color: var(--white);
+        border: none;
+        padding: 12px 30px;
+        border-radius: 10px;
+        font-weight: 700;
+    }
+
+    .appointment-btn:hover {
+        background-color: var(--coral-dark);
+        color: var(--white);
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="appointment-hero">
+    <div class="container">
+        <h1>Book an <span>Appointment</span></h1>
+
+        <p>
+            Request an appointment with DocSign and choose the
+            healthcare department that matches your needs.
+        </p>
+    </div>
+</section>
+
+
+<section class="appointment-section">
+    <div class="container">
+
+        <div class="appointment-card">
+
+            <h3>Appointment Request</h3>
+
+            <p class="intro">
+                Please provide your basic information and preferred
+                appointment details.
+            </p>
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">
+                            Full Name
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               placeholder="Enter your full name"
+                               required>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">
+                            Email Address
+                        </label>
+
+                        <input type="email"
+                               class="form-control"
+                               id="email"
+                               name="email"
+                               placeholder="Enter your email"
+                               required>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">
+                            Phone Number
+                        </label>
+
+                        <input type="tel"
+                               class="form-control"
+                               id="phone"
+                               name="phone"
+                               placeholder="Enter your phone number"
+                               required>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="department" class="form-label">
+                            Department
+                        </label>
+
+                        <select class="form-select"
+                                id="department"
+                                name="department"
+                                required>
+
+                            <option value="" selected disabled>
+                                Select Department
+                            </option>
+
+                            <option>Cardiology</option>
+                            <option>Neurology</option>
+                            <option>Pediatrics</option>
+                            <option>Orthopedics</option>
+                            <option>Dermatology</option>
+                            <option>Ophthalmology</option>
+                            <option>Dentistry</option>
+                            <option>Pulmonology</option>
+                            <option>Radiology</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="date" class="form-label">
+                            Preferred Date
+                        </label>
+
+                        <input type="date"
+                               class="form-control"
+                               id="date"
+                               name="date"
+                               required>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="time" class="form-label">
+                            Preferred Time
+                        </label>
+
+                        <input type="time"
+                               class="form-control"
+                               id="time"
+                               name="time"
+                               required>
+                    </div>
+
+
+                    <div class="col-12">
+                        <label for="message" class="form-label">
+                            Additional Information
+                        </label>
+
+                        <textarea class="form-control"
+                                  id="message"
+                                  name="message"
+                                  rows="4"
+                                  placeholder="Tell us anything important about your appointment"></textarea>
+                    </div>
+
+
+                    <div class="col-12 text-center mt-4">
+
+                        <button type="submit"
+                                class="appointment-btn">
+                            <i class="bi bi-calendar-check me-2"></i>
+                            Request Appointment
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

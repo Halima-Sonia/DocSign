@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+
+{% block title %}My Patient Profile | DocSign{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="profile-header">
+        <div>
+            <span class="profile-label">Patient Account</span>
+            <h1>My Patient Profile</h1>
+            <p>View and manage your personal healthcare information.</p>
+        </div>
+
+        {% if profile %}
+            <a href="{% url 'edit_patient_profile' %}"
+               class="btn profile-edit-btn">
+                Edit Profile
+            </a>
+        {% else %}
+            <a href="{% url 'create_patient_profile' %}"
+               class="btn profile-edit-btn">
+                Create Profile
+            </a>
+        {% endif %}
+    </div>
+
+
+    {% if profile %}
+
+    <div class="profile-card">
+
+        <div class="profile-section">
+            <h3>Personal Information</h3>
+
+            <div class="profile-grid">
+
+                <div class="profile-item">
+                    <span>Username</span>
+                    <strong>{{ request.user.username }}</strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Full Name</span>
+                    <strong>
+                        {{ request.user.first_name }}
+                        {{ request.user.last_name }}
+                    </strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Email</span>
+                    <strong>{{ request.user.email }}</strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Phone</span>
+                    <strong>
+                        {{ request.user.phone|default:"Not provided" }}
+                    </strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Date of Birth</span>
+                    <strong>
+                        {{ profile.date_of_birth|default:"Not provided" }}
+                    </strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Gender</span>
+                    <strong>
+                        {{ profile.get_gender_display|default:"Not provided" }}
+                    </strong>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="profile-section">
+            <h3>Contact Information</h3>
+
+            <div class="profile-grid">
+
+                <div class="profile-item full-width">
+                    <span>Address</span>
+                    <strong>
+                        {{ profile.address|default:"Not provided" }}
+                    </strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Emergency Contact</span>
+                    <strong>
+                        {{ profile.emergency_contact|default:"Not provided" }}
+                    </strong>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="profile-section">
+            <h3>Medical Information</h3>
+
+            <div class="profile-grid">
+
+                <div class="profile-item">
+                    <span>Blood Group</span>
+                    <strong>
+                        {{ profile.blood_group|default:"Not provided" }}
+                    </strong>
+                </div>
+
+                <div class="profile-item full-width">
+                    <span>Medical History</span>
+                    <strong>
+                        {{ profile.medical_history|default:"No information provided" }}
+                    </strong>
+                </div>
+
+                <div class="profile-item full-width">
+                    <span>Allergies</span>
+                    <strong>
+                        {{ profile.allergies|default:"No known allergies provided" }}
+                    </strong>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="profile-danger-zone">
+            <div>
+                <h4>Delete Profile</h4>
+                <p>
+                    Permanently remove your patient profile information.
+                </p>
+            </div>
+
+            <a href="{% url 'delete_patient_profile' %}"
+               class="btn delete-btn">
+                Delete Profile
+            </a>
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-profile">
+        <div class="empty-icon">👤</div>
+
+        <h2>Your patient profile isn't set up yet</h2>
+
+        <p>
+            Add your personal and healthcare information to complete
+            your DocSign patient profile.
+        </p>
+
+        <a href="{% url 'create_patient_profile' %}"
+           class="btn profile-edit-btn">
+            Create My Profile
+        </a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+<style>
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.profile-label {
+    color: var(--coral);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-header h1 {
+    color: var(--text);
+    font-weight: 700;
+    margin: 6px 0 8px;
+}
+
+.profile-header p {
+    color: var(--muted);
+    margin: 0;
+}
+
+.profile-edit-btn {
+    background: var(--coral);
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.profile-edit-btn:hover {
+    background: var(--coral-dark);
+    color: white;
+}
+
+.profile-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.profile-section {
+    padding: 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile-section h3 {
+    color: var(--text);
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.profile-item {
+    padding: 18px;
+    background: #f8fafc;
+    border-radius: 10px;
+}
+
+.profile-item span {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.profile-item strong {
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.profile-danger-zone {
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-danger-zone h4 {
+    margin: 0 0 5px;
+    color: var(--text);
+}
+
+.profile-danger-zone p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.delete-btn {
+    color: #c0392b;
+    border: 1px solid #e5b5b0;
+    background: transparent;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.delete-btn:hover {
+    background: #fff3f1;
+    color: #a93226;
+}
+
+.empty-profile {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 60px 30px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.empty-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.empty-profile h2 {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.empty-profile p {
+    color: var(--muted);
+    max-width: 550px;
+    margin: 10px auto 25px;
+}
+
+@media (max-width: 768px) {
+
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .profile-danger-zone {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+</style>
+
+{% endblock %}

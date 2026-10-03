@@ -1,0 +1,1220 @@
+{% extends 'base.html' %}
+
+{% block title %}DocSign | Modern Healthcare Management{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* =========================
+       HERO SECTION
+    ========================== */
+    .hero-section {
+        padding: 90px 0 80px;
+        background:
+            linear-gradient(135deg, #fff7f5 0%, #f7f8f9 55%, #eef0f1 100%);
+        overflow: hidden;
+    }
+
+    .hero-content h1 {
+        font-size: 3.2rem;
+        font-weight: 800;
+        line-height: 1.15;
+        color: var(--text);
+        margin-bottom: 22px;
+    }
+
+    .hero-content h1 span {
+        color: var(--coral);
+    }
+
+    .hero-content p {
+        font-size: 1.08rem;
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 650px;
+        margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .hero-btn {
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    .hero-visual {
+        background: var(--white);
+        border-radius: 24px;
+        padding: 35px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        text-align: center;
+    }
+
+    .hero-icon {
+        width: 130px;
+        height: 130px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        background: var(--coral-light);
+        color: var(--coral);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+
+    .hero-visual h4 {
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    .hero-visual p {
+        color: var(--muted);
+        margin-bottom: 0;
+    }
+
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================== */
+    .home-section {
+        padding: 75px 0;
+    }
+
+    .section-heading {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .section-heading h2 {
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 12px;
+    }
+
+    .section-heading p {
+        color: var(--muted);
+        max-width: 700px;
+        margin: auto;
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       ABOUT
+    ========================== */
+    .about-box {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 35px;
+        height: 100%;
+        box-shadow: var(--shadow);
+    }
+
+    .about-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 14px;
+        background: var(--coral-light);
+        color: var(--coral);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        margin-bottom: 20px;
+    }
+
+    .about-box h4 {
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 12px;
+    }
+
+    .about-box p {
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 0;
+    }
+
+
+    /* =========================
+       WHY DOCSIGN
+    ========================== */
+    .feature-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 30px;
+        height: 100%;
+        transition: 0.25s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+    }
+
+    .feature-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 14px;
+        background: var(--ash-light);
+        color: var(--ash-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+    }
+
+    .feature-card h5 {
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    .feature-card p {
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+
+
+    /* =========================
+       CAROUSEL
+    ========================== */
+    .carousel-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 35px;
+        min-height: 260px;
+        box-shadow: var(--shadow);
+    }
+
+    .carousel-icon {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        background: var(--coral-light);
+        color: var(--coral);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .carousel-card h5 {
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    .carousel-card p {
+        color: var(--muted);
+        line-height: 1.7;
+    }
+
+    .carousel-indicators [data-bs-target] {
+        background-color: var(--coral);
+    }
+
+
+    /* =========================
+       DOCTORS
+    ========================== */
+    .doctor-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        height: 100%;
+    }
+
+    .doctor-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        background: var(--coral-light);
+        color: var(--coral);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.8rem;
+    }
+
+    .doctor-card h5 {
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 5px;
+    }
+
+    .doctor-specialty {
+        color: var(--coral);
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .doctor-card p {
+        color: var(--muted);
+        margin-bottom: 0;
+    }
+
+
+    /* =========================
+       DEPARTMENTS
+    ========================== */
+/* Quick Links Section */
+.quick-links-section {
+    padding: 80px 0;
+    background: #f8fafc;
+}
+
+.section-heading {
+    max-width: 700px;
+    margin: 0 auto 45px;
+}
+
+.section-heading .section-label {
+    display: inline-block;
+    color: var(--coral);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.section-heading h2 {
+    color: var(--text);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+.quick-link-card {
+    height: 100%;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 35px 28px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.quick-link-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.09);
+}
+
+.quick-link-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--coral-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.quick-link-card h3 {
+    color: var(--text);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.quick-link-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.quick-link-btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 8px;
+    background: var(--coral);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.quick-link-btn:hover {
+    background: var(--coral-dark);
+    color: var(--white);
+}
+
+
+    /* =========================
+       HOW IT WORKS
+    ========================== */
+    .step-card {
+        text-align: center;
+        padding: 25px;
+        position: relative;
+    }
+
+    .step-number {
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        background: var(--coral);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.2rem;
+    }
+
+    .step-card h5 {
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    .step-card p {
+        color: var(--muted);
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       PATIENT EXPERIENCE
+    ========================== */
+    .experience-box {
+        background: linear-gradient(135deg, #fff7f5, #f7f8f9);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 45px;
+    }
+
+    .experience-box h2 {
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 18px;
+    }
+
+    .experience-box p {
+        color: var(--muted);
+        line-height: 1.8;
+    }
+
+    .experience-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 25px;
+    }
+
+    .experience-list li {
+        margin-bottom: 14px;
+        color: var(--text);
+    }
+
+    .experience-list i {
+        color: var(--coral);
+        margin-right: 8px;
+    }
+
+
+    /* =========================
+       CTA
+    ========================== */
+    .cta-section {
+        padding: 75px 0;
+    }
+
+    .cta-box {
+        background: var(--coral);
+        border-radius: 22px;
+        padding: 55px 35px;
+        text-align: center;
+        color: var(--white);
+    }
+
+    .cta-box h2 {
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .cta-box p {
+        max-width: 650px;
+        margin: 0 auto 25px;
+        opacity: 0.92;
+        line-height: 1.7;
+    }
+
+    .cta-box .btn {
+        background: var(--white);
+        color: var(--coral-dark);
+        border: none;
+        font-weight: 700;
+        padding: 12px 25px;
+        border-radius: 10px;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+    @media (max-width: 991px) {
+        .hero-section {
+            padding: 65px 0;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-visual {
+            margin-top: 35px;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+
+        .home-section {
+            padding: 55px 0;
+        }
+
+        .experience-box {
+            padding: 30px 22px;
+        }
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================
+     HERO
+========================== -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-7">
+                <div class="hero-content">
+                    <h1>
+                        Smarter Healthcare.<br>
+                        <span>Better Care.</span>
+                    </h1>
+
+                    <p>
+                        DocSign is a modern healthcare management platform
+                        designed to connect patients, doctors, medical records,
+                        departments, tests and healthcare services in one
+                        organized system.
+                    </p>
+
+                    <div class="hero-buttons">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}"
+                               class="btn btn-primary hero-btn">
+                                <i class="bi bi-speedometer2 me-2"></i>
+                                Go to Dashboard
+                            </a>
+                        {% else %}
+                            <a href="{% url 'signup' %}"
+                               class="btn btn-primary hero-btn">
+                                <i class="bi bi-person-plus me-2"></i>
+                                Get Started
+                            </a>
+
+                            <a href="{% url 'login' %}"
+                               class="btn btn-outline-secondary hero-btn">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                Login
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-visual">
+                    <div class="hero-icon">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+
+                    <h4>Welcome to DocSign</h4>
+
+                    <p>
+                        A simple, organized and modern way to manage
+                        healthcare information.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================
+     ABOUT DOCSIGN
+========================== -->
+<section class="home-section" id="about">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>About DocSign</h2>
+            <p>
+                Bringing important healthcare management tools together
+                through one convenient digital platform.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="about-box">
+                    <div class="about-icon">
+                        <i class="bi bi-hospital"></i>
+                    </div>
+
+                    <h4>Modern Healthcare</h4>
+
+                    <p>
+                        DocSign provides a structured environment for
+                        managing patients, doctors, medical records and
+                        healthcare activities.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="about-box">
+                    <div class="about-icon">
+                        <i class="bi bi-folder2-open"></i>
+                    </div>
+
+                    <h4>Organized Records</h4>
+
+                    <p>
+                        Keep important patient and medical information
+                        organized so healthcare teams can access the
+                        information they need efficiently.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="about-box">
+                    <div class="about-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <h4>Connected Care</h4>
+
+                    <p>
+                        DocSign brings different areas of healthcare
+                        management together to create a smoother
+                        experience for patients and healthcare teams.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================
+     WHY DOCSIGN
+========================== -->
+<section class="home-section bg-light">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Why Choose DocSign?</h2>
+            <p>
+                Designed around simplicity, organization and better
+                healthcare management.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <h5>Secure</h5>
+
+                    <p>
+                        Keep healthcare information organized within
+                        a structured management system.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+
+                    <h5>Efficient</h5>
+
+                    <p>
+                        Reduce unnecessary complexity and manage
+                        important healthcare information efficiently.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-layout-text-window"></i>
+                    </div>
+
+                    <h5>Organized</h5>
+
+                    <p>
+                        Keep patients, doctors, records and services
+                        structured in one place.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+
+                    <h5>Patient Focused</h5>
+
+                    <p>
+                        Built with the goal of making healthcare
+                        management simpler for everyone.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================
+     SUCCESS STORIES
+========================== -->
+<section class="home-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>DocSign Success Stories</h2>
+            <p>
+                Explore how organized digital healthcare management
+                can support better experiences.
+            </p>
+        </div>
+
+        <div id="successCarousel"
+             class="carousel slide"
+             data-bs-ride="carousel">
+
+            <div class="carousel-indicators">
+                <button type="button"
+                        data-bs-target="#successCarousel"
+                        data-bs-slide-to="0"
+                        class="active"></button>
+
+                <button type="button"
+                        data-bs-target="#successCarousel"
+                        data-bs-slide-to="1"></button>
+
+                <button type="button"
+                        data-bs-target="#successCarousel"
+                        data-bs-slide-to="2"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="carousel-card text-center">
+                        <div class="carousel-icon mx-auto">
+                            <i class="bi bi-clipboard2-check"></i>
+                        </div>
+
+                        <h5>Organized Patient Management</h5>
+
+                        <p>
+                            Keep patient information structured and
+                            accessible through a centralized healthcare
+                            management environment.
+                        </p>
+                    </div>
+                </div>
+                
+
+                <div class="carousel-item">
+                    <div class="carousel-card text-center">
+                        <div class="carousel-icon mx-auto">
+                            <i class="bi bi-file-medical"></i>
+                        </div>
+
+                        <h5>Better Medical Records</h5>
+
+                        <p>
+                            Manage medical records in a clear and
+                            organized digital workflow.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-card text-center">
+                        <div class="carousel-icon mx-auto">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+
+                        <h5>Growing Healthcare Platform</h5>
+
+                        <p>
+                            DocSign is designed to grow with additional
+                            healthcare departments, doctors, services
+                            and management features.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#successCarousel"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#successCarousel"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================
+     DOCTORS
+========================== -->
+<section class="home-section bg-light">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Our Medical Specialists</h2>
+            <p>
+                Healthcare professionals across different medical
+                specialties and departments.
+            </p>
+        </div>
+
+        <div id="doctorCarousel"
+             class="carousel slide"
+             data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="doctor-card">
+                                <div class="doctor-avatar">
+                                    <i class="bi bi-person"></i>
+                                </div>
+
+                                <h5>Dr. Sarah Ahmed</h5>
+
+                                <div class="doctor-specialty">
+                                    Cardiology
+                                </div>
+
+                                <p>
+                                    Focused on cardiovascular health
+                                    and patient care.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="doctor-card">
+                                <div class="doctor-avatar">
+                                    <i class="bi bi-person"></i>
+                                </div>
+
+                                <h5>Dr. Michael Rahman</h5>
+
+                                <div class="doctor-specialty">
+                                    Neurology
+                                </div>
+
+                                <p>
+                                    Dedicated to neurological health
+                                    and modern medical care.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="doctor-card">
+                                <div class="doctor-avatar">
+                                    <i class="bi bi-person"></i>
+                                </div>
+
+                                <h5>Dr. Emily Khan</h5>
+
+                                <div class="doctor-specialty">
+                                    Pediatrics
+                                </div>
+
+                                <p>
+                                    Providing compassionate healthcare
+                                    for children and families.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#doctorCarousel"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#doctorCarousel"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Departments, Services & Appointment -->
+<section class="quick-links-section">
+    <div class="container">
+
+        <div class="section-heading text-center">
+            <span class="section-label">DocSign Healthcare</span>
+            <h2>Explore Our Healthcare Services</h2>
+            <p>
+                Find the right department, explore medical services,
+                or book an appointment with ease.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- Departments -->
+            <div class="col-md-4">
+                <div class="quick-link-card">
+                    <div class="quick-link-icon">🏥</div>
+                    <h3>Departments</h3>
+                    <p>
+                        Explore our specialized healthcare departments
+                        and find the care you need.
+                    </p>
+                    <a href="{% url 'departments' %}" class="quick-link-btn">
+                        Explore Departments
+                    </a>
+                </div>
+            </div>
+
+            <!-- Medical Services -->
+            <div class="col-md-4">
+                <div class="quick-link-card">
+                    <div class="quick-link-icon">🩺</div>
+                    <h3>Medical Services</h3>
+                    <p>
+                        Discover medical tests, diagnostics and
+                        healthcare services available through DocSign.
+                    </p>
+                    <a href="{% url 'services' %}" class="quick-link-btn">
+                        View Services
+                    </a>
+                </div>
+            </div>
+
+            <!-- Appointment -->
+            <div class="col-md-4">
+                <div class="quick-link-card appointment-card">
+                    <div class="quick-link-icon">📅</div>
+                    <h3>Book an Appointment</h3>
+                    <p>
+                        Choose a department and request an appointment
+                        with our healthcare professionals.
+                    </p>
+                    <a href="{% url 'appointment' %}" class="quick-link-btn">
+                        Book Appointment
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================
+     HOW DOCSIGN WORKS
+========================== -->
+<section class="home-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>How DocSign Works</h2>
+
+            <p>
+                A simple workflow for managing essential healthcare
+                information.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+
+                    <h5>Create Account</h5>
+
+                    <p>
+                        Create your DocSign account and access the
+                        healthcare management platform.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="step-card">
+                    <div class="step-number">2</div>
+
+                    <h5>Manage Patients</h5>
+
+                    <p>
+                        Organize patient information and healthcare
+                        records.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="step-card">
+                    <div class="step-number">3</div>
+
+                    <h5>Manage Healthcare</h5>
+
+                    <p>
+                        Keep doctors, departments, services and
+                        medical activities organized.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="step-card">
+                    <div class="step-number">4</div>
+
+                    <h5>Track Records</h5>
+
+                    <p>
+                        Keep important medical information available
+                        through a structured system.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================
+     PATIENT EXPERIENCE
+========================== -->
+<section class="home-section bg-light">
+    <div class="container">
+
+        <div class="experience-box">
+
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-6">
+                    <h2>A Better Healthcare Experience</h2>
+
+                    <p>
+                        DocSign is designed to make healthcare management
+                        more organized and easier to navigate for patients
+                        and healthcare professionals.
+                    </p>
+
+                    <ul class="experience-list">
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Organized patient information
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Multiple healthcare departments
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Medical tests and diagnostic services
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Structured medical records
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Simple and modern interface
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-6 text-center">
+                    <div class="hero-icon">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+
+                    <h4 class="fw-bold">
+                        Healthcare Made More Organized
+                    </h4>
+
+                    <p class="mb-0">
+                        One platform for essential healthcare
+                        management needs.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Short Contact Section -->
+<section class="py-5" style="background-color: #f3f2f1;">
+    <div class="container text-center py-3">
+        <h2 class="fw-bold mb-3" style="color: #e58b82;">
+            Get in Touch with DocSign
+        </h2>
+
+        <p class="mb-4" style="color: #777;">
+            Have questions or need assistance? We're here to help
+            you on your healthcare journey.
+        </p>
+
+        <a href="{% url 'contact' %}"
+           class="btn text-white px-4 py-2 rounded-pill"
+           style="background-color: #e58b82;">
+            Contact Us
+            <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- =========================
+     FINAL CTA
+========================== -->
+<section class="cta-section">
+    <div class="container">
+
+        <div class="cta-box">
+
+            <h2>Ready to Explore DocSign?</h2>
+
+            <p>
+                Start managing healthcare information through a
+                simple and modern digital healthcare platform.
+            </p>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'dashboard' %}"
+                   class="btn">
+                    <i class="bi bi-speedometer2 me-2"></i>
+                    Open Dashboard
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'signup' %}"
+                   class="btn">
+                    <i class="bi bi-person-plus me-2"></i>
+                    Create Your Account
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
